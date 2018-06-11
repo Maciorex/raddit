@@ -1,0 +1,11 @@
+<% comments.each do |c| %>
+  <div class="comments_wrapper clearfix">
+    <div class="pull-left">
+      <p class="lead"><%= c.body %></p>
+      <p><small>Submitted <strong><%= time_ago_in_words(c.created_at) %></strong>  by <%= c.user.email %> </small></p>
+    </div>
+    <div class="btn=group pull-right">
+      <%= link_to 'Delete', link_comment_path(c.link_id, c.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+    </div>
+  </div>
+<% end %>
