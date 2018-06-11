@@ -5,7 +5,10 @@
       <p><small>Submitted <strong><%= time_ago_in_words(c.created_at) %></strong>  by <%= c.user.email %> </small></p>
     </div>
     <div class="btn=group pull-right">
-      <%= link_to 'Delete', link_comment_path(c.link_id, c.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+      <% if current_user.id == c.user_id %>
+        <%= link_to 'Edit', edit_link_comment_path(c.link_id, c.id), class: "btn btn-xs btn-primary" %>      
+        <%= link_to 'Delete', link_comment_path(c.link_id, c.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+      <% end %>
     </div>
   </div>
 <% end %>
